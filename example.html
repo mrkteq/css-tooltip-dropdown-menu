@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Menu - Examples</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background-color: #353535;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .example {
+            background-color: #2a2a2a;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .example h2 {
+            margin-top: 0;
+            color: #1296E6;
+        }
+
+        .example-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            background-color: #353535;
+            border-radius: 4px;
+            padding: 20px;
+            position: relative;
+        }
+
+        code {
+            background-color: #1a1a1a;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        pre {
+            background-color: #1a1a1a;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        /* Example 1: Default */
+        .menu-btn-1 {
+            anchor-name: --menu1;
+            padding: 12px 24px;
+            background: #1296E6;
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .dropdown-1 {
+            position: absolute;
+            position-anchor: --menu1;
+            top: calc(anchor(bottom) + 8px);
+            left: anchor(left);
+            background: #1a1a2e;
+            border: 2px solid #1296E6;
+            border-radius: 8px;
+            min-width: 180px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .menu-btn-1:focus + .dropdown-1,
+        .menu-btn-1:active + .dropdown-1 {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .dropdown-1 a {
+            display: block;
+            padding: 12px 16px;
+            color: #fff;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .dropdown-1 a:hover {
+            background: rgba(18, 150, 230, 0.2);
+        }
+
+        /* Example 2: Custom Colors */
+        .menu-btn-2 {
+            anchor-name: --menu2;
+            padding: 12px 24px;
+            background: #44A543;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .dropdown-2 {
+            position: absolute;
+            position-anchor: --menu2;
+            top: calc(anchor(bottom) + 8px);
+            left: anchor(left);
+            background: #1a1a2e;
+            border: 2px solid #44A543;
+            border-radius: 8px;
+            min-width: 180px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .menu-btn-2:focus + .dropdown-2,
+        .menu-btn-2:active + .dropdown-2 {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .dropdown-2 a {
+            display: block;
+            padding: 12px 16px;
+            color: #fff;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .dropdown-2 a:hover {
+            background: rgba(68, 165, 67, 0.2);
+        }
+
+        /* Example 3: Larger Gap */
+        .menu-btn-3 {
+            anchor-name: --menu3;
+            padding: 12px 24px;
+            background: #1296E6;
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .dropdown-3 {
+            position: absolute;
+            position-anchor: --menu3;
+            top: calc(anchor(bottom) + 20px);
+            left: anchor(left);
+            background: #1a1a2e;
+            border: 2px solid #1296E6;
+            border-radius: 8px;
+            min-width: 180px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .menu-btn-3:focus + .dropdown-3,
+        .menu-btn-3:active + .dropdown-3 {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .dropdown-3 a {
+            display: block;
+            padding: 12px 16px;
+            color: #fff;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .dropdown-3 a:hover {
+            background: rgba(18, 150, 230, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dropdown Menu Examples</h1>
+
+        <div class="example">
+            <h2>Basic Usage (Default)</h2>
+            <div class="example-content">
+                <button class="menu-btn-1" onclick="this.focus()">Actions ▼</button>
+                <div class="dropdown-1">
+                    <a href="#">Edit</a>
+                    <a href="#">Share</a>
+                    <a href="#">Delete</a>
+                </div>
+            </div>
+            <pre><code>&lt;button class="menu-btn" onclick="this.focus()"&gt;Actions ▼&lt;/button&gt;
+&lt;div class="dropdown"&gt;
+    &lt;a href="#"&gt;Edit&lt;/a&gt;
+    &lt;a href="#"&gt;Share&lt;/a&gt;
+    &lt;a href="#"&gt;Delete&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="example">
+            <h2>Custom Colors</h2>
+            <div class="example-content">
+                <button class="menu-btn-2" onclick="this.focus()">Options ▼</button>
+                <div class="dropdown-2">
+                    <a href="#">Settings</a>
+                    <a href="#">Preferences</a>
+                    <a href="#">Help</a>
+                </div>
+            </div>
+            <pre><code>&lt;button class="menu-btn-2" onclick="this.focus()"&gt;Options ▼&lt;/button&gt;
+&lt;div class="dropdown-2"&gt;...&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="example">
+            <h2>Larger Gap</h2>
+            <div class="example-content">
+                <button class="menu-btn-3" onclick="this.focus()">Menu ▼</button>
+                <div class="dropdown-3">
+                    <a href="#">Item 1</a>
+                    <a href="#">Item 2</a>
+                    <a href="#">Item 3</a>
+                </div>
+            </div>
+            <pre><code>&lt;button class="menu-btn-3" onclick="this.focus()"&gt;Menu ▼&lt;/button&gt;
+&lt;div class="dropdown-3"&gt;...&lt;/div&gt;</code></pre>
+        </div>
+    </div>
+</body>
+</html>
+
